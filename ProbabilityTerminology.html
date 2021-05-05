@@ -323,7 +323,7 @@ $(document).ready(function () {
 <p>If two events, <span class="math inline">\(A\)</span> and <span class="math inline">\(B,\)</span> don’t share any outcomes, i.e <span class="math inline">\(A \cap B = \{ \}\)</span>, then we say that events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are <strong>mutually exclusive.</strong> In other words, because they don’t share any outcomes, when one event occurs, the other cannot occur.</p>
 <p>If two events, A and B, are mutually exclusive, then <span class="math inline">\(P(A \text{ or } B) = P(A \cup B) = P(A) + P(B)\)</span></p>
 <p><strong>Example</strong>: When you roll a six-sided die, the events of rolling a number less than three and rolling a number greater than 3 are <span class="math inline">\(A = \{1, 2\}\)</span> and <span class="math inline">\(B = \{4, 5, 6\}\)</span></p>
-<p>These events are mutually exclusive, so <span class="math inline">\(P(A or B) = P(A) + P(B).\)</span></p>
+<p>These events are mutually exclusive, so <span class="math inline">\(P(A \text{ or } B) = P(A) + P(B).\)</span></p>
 <p>If <span class="math inline">\(A\)</span> is an event, then the complement of <span class="math inline">\(A,\)</span> denoted by <span class="math inline">\(A^c\)</span> or <span class="math inline">\(\bar{A},\)</span> is the set of all outcomes in the sample space that are not in <span class="math inline">\(A,\)</span> or, in set-subtraction notation, <span class="math inline">\(S \setminus A.\)</span></p>
 <p>Events <span class="math inline">\(A\)</span> and <span class="math inline">\(A^c\)</span> are mutually exclusive, so <span class="math inline">\(1 = P(S) = P(A \text{ or } A^c) = P(A) + P(A^c).\)</span> Solving the equation <span class="math inline">\(1 = P(A) + P(A^c)\)</span> for <span class="math inline">\(P(A^c)\)</span> gives <span class="math inline">\(P(A^c) = 1 - P(A).\)</span> In words, the probability of the complement of an event is 1 minus the probability of the event.</p>
 <p><strong>Example</strong>: If <span class="math inline">\(P(A) = \frac{1}{3},\)</span> then <span class="math inline">\(P(A^c) = 1 - \frac{1}{3} = \frac{2}{3}.\)</span></p>
@@ -342,6 +342,23 @@ $(document).ready(function () {
 <p>In a symmetric way, <span class="math display">\[P(B |A) = \frac{P(B \cap A)}{P(A)} = = \frac{P(B)\cdot P(A)}{P(A)} = P(B)\]</span></p>
 <p><strong>Example</strong>: find the probability that you toss a heads given that you have just tossed a tails.</p>
 <p>Assuming a fair coin and no funny business with the toss, the tosses should be independent, so <span class="math inline">\(P(\text{H this time}|\text{T last time}) = P(\text{H this time}) = \frac{1}{2}.\)</span></p>
+<p><strong>Example</strong>: In a trial of the Pfizer/BioNTech vaccine for COVID-19, 43448 volunteers were randomly assigned to either receive the vaccine (treatment group) or a shot of saline (control group). There were 21720 that received the vaccine and 21728 that received the placebo. They then waited until there had been 170 cases of COVID-19 among the entire group. There were 8 cases in the treatment group and 162 in the control group. You randomly choose one person from the population and observe whether they had been one of the COVID cases (<span class="math inline">\(C\)</span> for COVID or <span class="math inline">\(NC\)</span> for No-Covid) and whether they were in the treatment group or control group (<span class="math inline">\(V\)</span> for vaccinated or <span class="math inline">\(P\)</span> for placebo.) (Data from <a href="https://www.nejm.org/doi/full/10.1056/NEJMoa2034577" class="uri">https://www.nejm.org/doi/full/10.1056/NEJMoa2034577</a>) Let <span class="math inline">\(A\)</span> be the event that a volunteer was in the control group. Let <span class="math inline">\(B\)</span> be the event that a volunteer experienced COVID. What is the sample space for this experiment? <span class="math inline">\(S = \{(D, V), (D, P), (ND, V), (ND, P)\}\)</span> Use set notation to write <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> as subsets of <span class="math inline">\(S.\)</span></p>
+<p><span class="math inline">\(A = \{(D, P), (ND, P)\}\)</span></p>
+<p><span class="math inline">\(B = \{(D, P), (D, V)\}\)</span></p>
+<p>Draw a Venn diagram to illustrate <span class="math inline">\(S, A,\)</span> and <span class="math inline">\(B\)</span> and compute the number of subjects in each category.</p>
+<p>There were 21728 in <span class="math inline">\(A\)</span> and 162 experienced COVID, so there were 21566 in <span class="math inline">\(A\)</span> but not in <span class="math inline">\(B\)</span></p>
+<p>There were 170 in <span class="math inline">\(B,\)</span> and 8 were in <span class="math inline">\(B\)</span> but not in <span class="math inline">\(A,\)</span> so 162 were in <span class="math inline">\(A \setminus B.\)</span> There were 21720 not in <span class="math inline">\(A\)</span> and 21712 of those didn’t get COVID.</p>
+<p><img src="images/PfizerVenn.JPG" /></p>
+<p>Are <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> mutually exclusive?</p>
+<p>No, they share the outcome <span class="math inline">\((D, P).\)</span></p>
+<p>Are <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> independent? No, it appears that those who were vaccinated had less chance of experiencing COVID.</p>
+<p>Compute <span class="math inline">\(P(A), P(B), P\left(A\cap B\right)\)</span> and <span class="math inline">\(P\left(A\cup B\right).\)</span> <span class="math inline">\(P(A) = 21728/43488\)</span></p>
+<p><span class="math inline">\(P(A^c) = 21720/43488\)</span></p>
+<p><span class="math inline">\(P(B) = 170/43488\)</span></p>
+<p><span class="math inline">\(P(A \cap B) = 162/43488\)</span></p>
+<p><span class="math inline">\(P(A \cup B) = (21728 + 8)/43488 = 21736/43488\)</span></p>
+<p>Compute <span class="math inline">\(P(B |A) = P(B \cap A)/P(A) = (162/43488)/(21728/43488) = 163/21728\)</span>. This is the probability of getting COVID given that you were NOT vaccinated.</p>
+<p>Compute <span class="math inline">\(P(B|A^c) = P(B \cap A^c)/P(A^c) = (8/43488)/(21720/43488) = 8/21720\)</span> This is the probability of getting COVID given that you were vaccinated. Notice that the vaccine appears to have reduced the chance of infection by about 95%.</p>
 
 
 
