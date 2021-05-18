@@ -11,7 +11,7 @@
 
 
 
-<title>Common Probability Distributions</title>
+<title>Probability Distributions</title>
 
 <script src="site_libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
@@ -23,6 +23,8 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -303,29 +305,88 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Common Probability Distributions</h1>
+<h1 class="title toc-ignore">Probability Distributions</h1>
 
 </div>
 
 
-<p>There are some simple probability distributions that come up frequently in real-world situations.</p>
-<div id="bernoulli-trial-or-bernoulli-experiment" class="section level3">
-<h3><em>Bernoulli Trial or Bernoulli Experiment</em></h3>
-<p>A Bernoulli Trial is a probability experiment where there are two outcomes (we usually call them success or failure, but it could be heads or tails, zero or one, etc.) We usually call the probability of success <span class="math inline">\(p\)</span> and probability of failure <span class="math inline">\(q.\)</span> Because there are only two outcomes and the sum of all the probabilities must be 1, we must have <span class="math inline">\(q = 1 - p.\)</span></p>
+<p>A probability distribution allows us to compute the probabilities of events in our probability experiment</p>
+<div id="discrete-versus-continuous-probability-distributions" class="section level3">
+<h3><em>Discrete Versus Continuous Probability Distributions</em></h3>
+<p>For probability experiments where the outcomes are numbers, we can use a capital letter to <span class="math inline">\(X\)</span> to stand for the random number that will be the outcome. We call <span class="math inline">\(X\)</span> a <em>random variable</em>.</p>
+<p>If the values that a random variable, <span class="math inline">\(X,\)</span> can take are separated, then we say that <span class="math inline">\(X\)</span> is a <em>discrete</em> random variable. If there is no minimum spacing between consecutive values of <span class="math inline">\(X,\)</span> then we say that <span class="math inline">\(X\)</span> is a <em>continuous</em> random variable.</p>
+<div id="examples-of-discrete-and-continuous-probability-distributions" class="section level4">
+<h4><em>Examples of Discrete and Continuous Probability Distributions</em></h4>
+<p>Consider the following scenarios:</p>
+<p>The random variable, <span class="math inline">\(X,\)</span> is the sum obtained when roll a pair of six-sided dice and add the numbers that land on top. In this case <span class="math inline">\(X \in \{2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12\}.\)</span> There is a space of 1 between the values, so <span class="math inline">\(X\)</span> is a discrete random variable.</p>
+<p>The random variable, <span class="math inline">\(X,\)</span> is the weight of a randomly capture rabbit. There is a whole continuum of weights. For example, 3 kg is possible, but so is 3.1 kg or 3.01 kg or 3.00005 kg. There is no minimum spacing between the observable outcomes. In this case, <span class="math inline">\(X,\)</span> is a continous random variable.</p>
+<p>Other examples of discrete random variables would be the number of customers arriving at a store in a one-hour period or the number of times you shoot a basketball and miss before you make it into the basket. Only discrete (separated) numbers can occur. In both of these cases, the set of all possible outcomes is <span class="math inline">\(S = \{0, 1, 2, 3, ...\}.\)</span> Notice that in these two cases there are infinitely many outcomes. That’s not a problem; what makes it discrete is that there is space between the outcomes.</p>
+<p>Other examples of continuous random variables would be the time it take to get your order at McDonald’s or the heights of college-age males, or the time before a light bulb burns out. There is a continuum of values that the random variable can take with no theoretical separation.</p>
 </div>
-<div id="binomial-distribution" class="section level3">
-<h3><em>Binomial Distribution</em></h3>
+<div id="conditions-for-discrete-distribution-to-be-a-probability-distribution" class="section level4">
+<h4><em>Conditions for Discrete Distribution to be a Probability Distribution</em></h4>
+<p>To make a discrete probability distribution, all you need is a set of discrete outcomes, a probability for each outcome, and the sum of all those probabilities must be 1. If we use the notation <span class="math inline">\(p(x) = P(X = x),\)</span> (that is, <span class="math inline">\(p(x)\)</span> stands for the probability that the random variable <span class="math inline">\(X\)</span> takes the specific value <span class="math inline">\(x,\)</span>) then we just need to check that for each <span class="math inline">\(x\)</span> in the sample space, <span class="math inline">\(S,\)</span> <span class="math inline">\(0 \le p(x) \le 1\)</span> and <span class="math inline">\(\sum_{x \in S}{p(x)} = 1.\)</span></p>
+<p>For example, I could make up a probability distribution of the number of times I eat breakfast each week. The sample space would be <span class="math inline">\(S = \{0, 1, 2, 3, 4, 5, 6, 7\}\)</span></p>
+<pre class="r"><code>library(knitr)
+library(kableExtra)</code></pre>
+<pre><code>## Warning: package &#39;kableExtra&#39; was built under R version 4.0.5</code></pre>
+<pre class="r"><code>df &lt;- data.frame(Cat = c(&quot;Short&quot;, &quot;Tall&quot;), Sad = linebreak(c(&quot;Sam\n Beth&quot;, &quot;Erin\n Ted&quot;)), Happy = linebreak(c(&quot;Jim\n Sara&quot;, &quot;Bob\n Ava&quot;)))
+kable(df, col.names = c(&quot;&quot;, &quot;Sad&quot;, &quot;Happy&quot;), escape = F, caption = &quot;My caption&quot;) %&gt;%
+  kable_styling(latex_options = &quot;hold_position&quot;)</code></pre>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+My caption
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:left;">
+Sad
+</th>
+<th style="text-align:left;">
+Happy
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Short
+</td>
+<td style="text-align:left;">
+
+</td>
+<td style="text-align:left;">
+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Tall
+</td>
+<td style="text-align:left;">
+
+</td>
+<td style="text-align:left;">
+
+</td>
+</tr>
+</tbody>
+</table>
+<p>Whether or not this has any basis in reality, it is a probability distribution because each of the probabilities is at least 0 and no more than 1, and the sum <span class="math inline">\(\sum_{x \in S}{p(x)}=\frac{1}{2} +\frac{1}{4} +\frac{1}{8} +\frac{1}{16} +\frac{1}{32} +\frac{1}{32} + 0 = 1\)</span></p>
+</div>
+</div>
+<div id="expected-values" class="section level3">
+<h3><em>Expected Values</em></h3>
 <p>The binomial distribution describes the probability of <span class="math inline">\(X\)</span> success in <span class="math inline">\(n\)</span> trials of a Bernoulli experiment. (Notice that we capitalize <span class="math inline">\(X\)</span> because it is a random variable. When we want to talk about a specific value that <span class="math inline">\(X\)</span> might turn out to be, we use the lower case <span class="math inline">\(x.\)</span>) The value of <span class="math inline">\(X\)</span> could be anywhere from 0 to <span class="math inline">\(n,\)</span> or <span class="math inline">\(X \in \{0, 1, ..., n\}\)</span></p>
 <p>The probability of a single outcome with exactly <span class="math inline">\(x\)</span> successes in <span class="math inline">\(n\)</span> trials is <span class="math inline">\(p^x q^{n-x},\)</span> because if there are <span class="math inline">\(x\)</span> successes, there must be <span class="math inline">\(n - x\)</span> failures. But those <span class="math inline">\(x\)</span> successes could occur in any of the <span class="math inline">\(n\)</span> trials, so there are <span class="math inline">\(_{n}C_x\)</span> sequences with <span class="math inline">\(x\)</span> successes in <span class="math inline">\(n\)</span> trials.</p>
-<p>This gives us the formula <span class="math display">\[P(X = x) = p(x) = {}_{n}C_x p^x q^{n-x} = {}_{n}C_x p^x (1-p)^{n-x} =\frac{n!}{(n-x)!x!} p^x q^{n-x}.\]</span></p>
+<p>This gives us the formula <span class="math display">\[P(X = x) = p(x) = _{n}C_x p^x q^{1-x} = _{n}C_x p^x (1-p)^{1-x} =\frac{n!}{(n-x)!x!} p^x q^{1-x}.\]</span></p>
 <p>We use the shorthand notation <span class="math inline">\(X ~ b(n, p)\)</span> to indicate that the random variable <span class="math inline">\(X\)</span> has a binomial distribution with corresponding to <span class="math inline">\(n\)</span> trials and probability of success <span class="math inline">\(p.\)</span> For example, if <span class="math inline">\(X\)</span> is the number of ones when you roll a fair die 15 times, then <span class="math inline">\(X ~ b(15, 1/6)\)</span>.</p>
-<p>The expected value or mean for <span class="math inline">\(b(n, p)\)</span> is <span class="math inline">\(E(X) = np.\)</span> The variance for for <span class="math inline">\(b(n,p)\)</span> is <span class="math inline">\(\sigma^2= np(1-p),\)</span> so the standard deviation for <span class="math inline">\(b(n, p)\)</span> is <span class="math inline">\(\sqrt{np(1-p)}.\)</span></p>
 </div>
 <div id="geometric-distribution" class="section level3">
 <h3><em>Geometric Distribution</em></h3>
-<p>For a binomial experiment, we perform a Bernoulli trial a fixed number of times and count the number of successes. Suppose that, instead, we perform a Bernoulli trial until we get a success and count the number of trials to the first success. Because the number of trials is not fixed, this is a different distribution from the binomial. We call it a <em>geometric</em> distribution.</p>
-<p>CAUTION: there are actually TWO ways to define a geometric distribution. One is as the number of <em>trials</em> to the first success (so that first success is counted) and the other is as the number of <em>failures</em> to the first success (so that only the failures are counted.) If you’re setting up the problem, be sure you think clearly about which you’ll count. If the setup is given to you, you’ll need figure out from the context what is being counted, the failures, or the total trials (which would be one more than the failures.)</p>
-<p>This Using <span class="math inline">\(p\)</span> to represent the probability of success</p>
+<p>For a binomial experiment, we perform a Bernoulli trial a fixed number of times and count the number of success. Suppose that, instead, we perform a Bernoulli trial until we get a success and count the number of trials to that first success. Using <span class="math inline">\(p\)</span> to represent the probability</p>
 </div>
 
 
