@@ -325,7 +325,18 @@ $(document).ready(function () {
 <h3><em>Geometric Distribution</em></h3>
 <p>For a binomial experiment, we perform a Bernoulli trial a fixed number of times and count the number of successes. Suppose that, instead, we perform a Bernoulli trial until we get a success and count the number of trials to the first success. Because the number of trials is not fixed, this is a different distribution from the binomial. We call it a <em>geometric</em> distribution.</p>
 <p>CAUTION: there are actually TWO ways to define a geometric distribution. One is as the number of <em>trials</em> to the first success (so that first success is counted) and the other is as the number of <em>failures</em> to the first success (so that only the failures are counted.) If you’re setting up the problem, be sure you think clearly about which you’ll count. If the setup is given to you, you’ll need figure out from the context what is being counted, the failures, or the total trials (which would be one more than the failures.)</p>
-<p>This Using <span class="math inline">\(p\)</span> to represent the probability of success</p>
+<p>Using <span class="math inline">\(p\)</span> to represent the probability of success, the pdf for a geometric distribution is</p>
+<p><span class="math display">\[P\left(X=x\right)=(1–p)^{x-1}p \]</span> If we count the number <em>trials</em> (i.e. counting the success at the end), the the mean number of trials to the first success is <span class="math display">\[\mu=E\left(x\right)=\frac{1}{p} \]</span> and the variance is <span class="math display">\[\sigma^2=\frac{1-p}{p^2}\]</span> so that the standard deviation is <span class="math display">\[ \sigma=\frac{\sqrt{1-p}}{p}\]</span> If we only count <em>failures</em>, then the mean shifts down by one to <span class="math display">\[\mu=E\left(x\right)=\frac{1}{p} - 1 = \frac{1-p}{p}.\]</span> (because we don’t count that final success), but that doesn’t affect the variance or standard deviation, which stay the same.</p>
+</div>
+<div id="exponential-distribution" class="section level3">
+<h3><em>Exponential Distribution</em></h3>
+<p>The Exponential Distribution is the continuous analog of the geometric distribution. Instead of counting the number of trials to the first successful event, we count the time to the first event.</p>
+<p><span class="math display">\[p\left(x\right)=\lambda e^{-\lambda x}, x \ge 0\]</span> <span class="math display">\[E\left(X\right)=\frac{1}{\lambda}\]</span> <span class="math display">\[\mathrm{Standard\ Deviation}=\frac{1}{\lambda}\]</span></p>
+</div>
+<div id="poisson-distribution" class="section level3">
+<h3><em>Poisson Distribution</em></h3>
+<p>The Poisson Distribution.<br />
+<span class="math display">\[P\left(k \mathrm{ \ events\ in\ time\ period}\right)=P\left(X=k\right)=e^{-\frac{\text{events}}{\text{time}}\cdot \text{time period}}\frac{\left(\frac{\text{events}}{\text{time}}\cdot \text{time period} \right)^k}{k!},\]</span> where <span class="math inline">\(k = 0, 1, 2, ...\)</span></p>
 </div>
 
 

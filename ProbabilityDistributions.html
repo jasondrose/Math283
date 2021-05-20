@@ -380,13 +380,6 @@ Tall
 <div id="expected-values" class="section level3">
 <h3><em>Expected Values</em></h3>
 <p>The binomial distribution describes the probability of <span class="math inline">\(X\)</span> success in <span class="math inline">\(n\)</span> trials of a Bernoulli experiment. (Notice that we capitalize <span class="math inline">\(X\)</span> because it is a random variable. When we want to talk about a specific value that <span class="math inline">\(X\)</span> might turn out to be, we use the lower case <span class="math inline">\(x.\)</span>) The value of <span class="math inline">\(X\)</span> could be anywhere from 0 to <span class="math inline">\(n,\)</span> or <span class="math inline">\(X \in \{0, 1, ..., n\}\)</span></p>
-<p>The probability of a single outcome with exactly <span class="math inline">\(x\)</span> successes in <span class="math inline">\(n\)</span> trials is <span class="math inline">\(p^x q^{n-x},\)</span> because if there are <span class="math inline">\(x\)</span> successes, there must be <span class="math inline">\(n - x\)</span> failures. But those <span class="math inline">\(x\)</span> successes could occur in any of the <span class="math inline">\(n\)</span> trials, so there are <span class="math inline">\(_{n}C_x\)</span> sequences with <span class="math inline">\(x\)</span> successes in <span class="math inline">\(n\)</span> trials.</p>
-<p>This gives us the formula <span class="math display">\[P(X = x) = p(x) = _{n}C_x p^x q^{1-x} = _{n}C_x p^x (1-p)^{1-x} =\frac{n!}{(n-x)!x!} p^x q^{1-x}.\]</span></p>
-<p>We use the shorthand notation <span class="math inline">\(X ~ b(n, p)\)</span> to indicate that the random variable <span class="math inline">\(X\)</span> has a binomial distribution with corresponding to <span class="math inline">\(n\)</span> trials and probability of success <span class="math inline">\(p.\)</span> For example, if <span class="math inline">\(X\)</span> is the number of ones when you roll a fair die 15 times, then <span class="math inline">\(X ~ b(15, 1/6)\)</span>.</p>
-</div>
-<div id="geometric-distribution" class="section level3">
-<h3><em>Geometric Distribution</em></h3>
-<p>For a binomial experiment, we perform a Bernoulli trial a fixed number of times and count the number of success. Suppose that, instead, we perform a Bernoulli trial until we get a success and count the number of trials to that first success. Using <span class="math inline">\(p\)</span> to represent the probability</p>
 </div>
 
 
