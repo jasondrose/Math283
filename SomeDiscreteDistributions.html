@@ -337,6 +337,8 @@ $(document).ready(function () {
 <h3><em>Poisson Distribution</em></h3>
 <p>The Poisson Distribution.<br />
 <span class="math display">\[P\left(k \mathrm{ \ events\ in\ time\ period}\right)=P\left(X=k\right)=e^{-\frac{\text{events}}{\text{time}}\cdot \text{time period}}\frac{\left(\frac{\text{events}}{\text{time}}\cdot \text{time period} \right)^k}{k!},\]</span> where <span class="math inline">\(k = 0, 1, 2, ...\)</span></p>
+<p>Let <span class="math inline">\(\mu = -\frac{\text{events}}{\text{time}}\cdot \text{time period}\)</span>. In terms of <span class="math inline">\(\mu,\)</span> the pdf of the Poisson Distribution can be written as <span class="math display">\[P\left(X=k\right)=e^{-\mu}\frac{\mu^k}{k!},\]</span> where <span class="math inline">\(k = 0, 1, 2, ...\)</span> The expected value is <span class="math inline">\(E(X) = \mu\)</span> and the variance is <span class="math inline">\(\sigma^2 = \mu,\)</span> so the standard deviation is <span class="math inline">\(\sigma = \sqrt{\mu}\)</span></p>
+<p>The distribution of waiting times between arrivals (the “inter-arrival” times) in a Poisson process is exponential with <span class="math inline">\(\lambda = \frac{\text{events}}{\text{time}}\)</span> so that the expected value of the waiting times is <span class="math inline">\(\frac{1}{\lambda}\)</span></p>
 </div>
 
 
