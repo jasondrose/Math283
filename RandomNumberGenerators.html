@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Generating Random Numbers</title>
+
+<script src="site_libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Math 283 Materials</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="ProbabilityTerminology.html">Probability Terminology</a>
+</li>
+<li>
+  <a href="ProbabilityDistributions.html">Probability  Distributions</a>
+</li>
+<li>
+  <a href="SomeDiscreteDistributions.html">Common Probability Distributions</a>
+</li>
+<li>
+  <a href="RandomNumberGenerators.html">Generating Random Numbers</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Generating Random Numbers</h1>
+
+</div>
+
+
+<p>In order to simulate random processes, we need to be able to generate random numbers</p>
+<div id="using-the-inverse-cdf-to-generate-numbers-from-a-distribution" class="section level3">
+<h3><em>Using the Inverse CDF to generate numbers from a distribution</em></h3>
+<p>In order to simulate a random process, we want to be able to generate random numbers. If we can generate random numbers uniformly distributed between 0 and 1, then we can use the inverse cdf of a probability distribution to generate random numbers from that probability distribution.</p>
+</div>
+<div id="modular" class="section level3">
+<h3><em>Modular</em></h3>
+<p>Modular Arithmetic: we say two numbers are congruent modulo (or mod) n if their difference is divisible by n. Arithmetic modulo n collapses all of the integers into n “congruence classes” or “equivalence classes.”</p>
+<p>For example, if we do arithmetic mod 7, then we have the following congruence classes</p>
+<p>Integers equivalent/congruent to 0: <span class="math inline">\(\{…,-28, -21, -14, -7, 0, 7, 14, 21, 28, 35, …\}\)</span> Integers congruent to 1: <span class="math inline">\(\{…,-27, -20, -13, -6, 1, 8, 15, 22, 29, 36, …\}\)</span> Integers congruent to 2: <span class="math inline">\(\{…,-26, -19, -12, -5, 2, 9, 16, 23, 30, 37, …\}\)</span> Integers congruent to 3: <span class="math inline">\(\{…,-25, -18, -11, -4, 3, 10, 17, 24, 31, 38, …\}\)</span> Integers congruent to 4: <span class="math inline">\(\{…,-24, -17, -10, -3, 4, 11, 18, 25, 32, 39, …\}\)</span> Integers congruent to 5: <span class="math inline">\(\{…,-23, -16, -9, -2, 5, 12, 19, 26, 33, 40, …\}\)</span> Integers congruent to 6: <span class="math inline">\(\{…,-22, -15, -8, -1, 6, 13, 20, 27, 34, 41, …\}\)</span></p>
+<p>You probably gave up division with remainders long ago, so recall: When you divide <span class="math inline">\(k\)</span> by <span class="math inline">\(n,\)</span> you are finding numbers <span class="math inline">\(q\)</span> (for quotient) and <span class="math inline">\(r\)</span> (for remainder) such that <span class="math inline">\(k = qn + r\)</span> where <span class="math inline">\(r\)</span> is between <span class="math inline">\(0 and n – 1.\)</span></p>
+<p>Example: divide -18 by 7</p>
+<p>We want to find a multiple of 7 just less than -18 so that we can add a small, positive, remainder to that multiple to get -18. Because -21 is a multiple of 7 just less than -18, <span class="math inline">\(-18 = -3\cdot7 + 3\)</span>.</p>
+<p>What does that say about -18 and 3 in mod 7 arithmetic? Because -18 -3 = -21, which is divisible 7, -18 and 3 are in the same congruence class modulo 7.</p>
+<p>In general, the remainder when you divide by the modulus will give you a representative of the congruence class that is at least 0 and no more than the modulus minus 1.</p>
+<p>Example: divide – 23 by 5.</p>
+<p>What does that say about -23 and 2 in mod 5 arithmetic</p>
+<p>Again -23 and 2 are in the same congruence class modulo 5, because -23 - 2 = -25 and -25 is divisible by 5.</p>
+<p>Given the modulus, <span class="math inline">\(n,\)</span> you can always find a number congruent to integer <span class="math inline">\(k\)</span> that is in the set <span class="math inline">\(\{0, 1, …, n – 1\}\)</span> by finding the remainder when you divide <span class="math inline">\(k\)</span> by <span class="math inline">\(n\)</span> (or add or subtract multiples of <span class="math inline">\(n\)</span> until you have a number in the set <span class="math inline">\(\{0, 1, 2, …, n –1\}\)</span>.)</p>
+<p>We can add or subtract two numbers in arithmetic mod <span class="math inline">\(n\)</span>: just add or subtract them as normal and then find the remainder when you divide by <span class="math inline">\(n\)</span> (or add or subtract multiples of <span class="math inline">\(n\)</span> until you have a number in the set <span class="math inline">\(\{0, 1, 2, …, n –1\}.\)</span>)</p>
+<p>For example 19 + 9 mod 7 = 19 + 9 = 28 and 28 mod 7 is congruent to 0, so 19 + 9 mod 7 = 0.</p>
+<p>Note that if you use any representatives from the congruence classes of 19 and 9 you’ll get the same result.</p>
+<p>19 mod 7 = 5 and 9 mod 7 = 2, so 19 + 9 mod 7 = 5 + 2 mod 7 = 0.</p>
+<p>Example: what is 7 – 11 mod 5? 7 mod 5 is 2 and 11 mod 5 is 1, so 7 - 11 mod 5 = 2 -1 mod 5 = 1.</p>
+<p>The =mod(number, n) command in Excel will do this for you. You could enter =mod(7-11, 5) in a cell and get 1.</p>
+<p>We can multiply two numbers in arithmetic mod <span class="math inline">\(n\)</span>: just add or subtract them as normal and then find the remainder when you divide by <span class="math inline">\(n\)</span> (or add or subtract multiples of <span class="math inline">\(n\)</span> until you have a number in the set <span class="math inline">\(\{0, 1, 2, …, n –1\}.\)</span>)</p>
+<p>Example: what is <span class="math inline">\(19 \cdot 11 \mod 7?\)</span><br />
+First, <span class="math inline">\(19 \cdot 11 = 209\)</span> and then <span class="math inline">\(209 = 29\cdot 7 + 6\)</span>, so $209  = 6.</p>
+<p>Does it matter if we use something congruent to 19 instead? No 19 is congruent to 5 mod 7 and 11 is congruent to 4 mod 7, so <span class="math inline">\(19 \cdot 11 \mod 7 = 5 \cdot 4 \mod 7 = 20 \mod 7 = 6.\)</span></p>
+<p><em>Definition:</em> a <em>Linear Congruential Generator (LCG)</em> is a process for generating uniform random numbers that uses modular arithmetic. 1 Start by picking numbers <span class="math inline">\(m\)</span> (slope), <span class="math inline">\(b\)</span> (intercept), and <span class="math inline">\(n\)</span> (the modulus.) 2. Pick a seed (or starting value), <span class="math inline">\(x_1,\)</span> maybe by using the time or some other number that won’t always be the same. (In Excel =now() will get you the date and time, which you can format as a number. =round and =floor can help trim things off.) 3. Generate the next number in your random sequence by computing <span class="math inline">\(x_2 = mx_1+b \mod n\)</span> 4. Keep repeating this process, i.e. <span class="math inline">\(x_{k+1}=mx_k+b\mod n,\)</span> to generate a sequence of pseudorandom numbers between 0 and <span class="math inline">\(n – 1.\)</span> This process will always repeat once you get to a number you’ve seen before, so it is not really random, and that’s why we say “pseudorandom”. If all the numbers are between 0 and <span class="math inline">\(n – 1,\)</span> how far can we go between? If you generate <span class="math inline">\(n + 1\)</span> numbers between 0 an and $n -1 $, then it is like fitting <span class="math inline">\(n+1\)</span> pigeons into <span class="math inline">\(n\)</span> holes. Maybe there are lots of holes with more than one pigeon, but there is at least one hole with two pigeons. So, after you’ve generated <span class="math inline">\(n + 1\)</span> you must have hit a repeat. That means the very best case is that the period is equal to the modulus, <span class="math inline">\(n\)</span></p>
+<p>When <span class="math inline">\(b \neq 0,\)</span> correctly chosen parameters allow a period equal to <span class="math inline">\(n,\)</span> for all seed values. This will occur if and only if: n and b are relatively prime (share no common primes.) m – 1 is divisible by all prime factors of n, m – 1 is divisible by 4 if n is divisible by 4. Definition: a Multilinear Congruential Generator (LCG) is a process for generating uniform random numbers that uses modular arithmetic. 1 Start by picking numbers <span class="math inline">\(a_1,a_2,\ldots,a_j\)</span> (slopes), <span class="math inline">\(b\)</span> (intercept), and <span class="math inline">\(n\)</span> (the modulus.) 2. Pick <span class="math inline">\(j\)</span> seeds (or starting values), <span class="math inline">\(x_j,x_j-1,\ldots,x_1\)</span> (maybe by using the time or some other number that won’t always be the same. 3. Generate the next number in your random sequence by computing <span class="math inline">\(a_1x_j+a_2x_{j-1}+\cdots+a_jx_1+b\left(mod\ n\right)\)</span> 4. Keep repeating this process to generate a sequence of pseudorandom numbers between 0 and <span class="math inline">\(n – 1.\)</span> This process will always repeat once you get to a sequence of <span class="math inline">\(j\)</span> numbers you’ve seen before, so it is not really random, and that’s why we say “pseudorandom”.</p>
+<p>From last time: Let <span class="math inline">\(Y~U\left[0,1\right]\)</span> (this is shorthand for <span class="math inline">\(Y\)</span> is distributed uniformly on the closed interval from 0 to 1.) What is the pdf for <span class="math inline">\(Y?\)</span> For <span class="math inline">\(U[0, 1]\)</span>, the pdf is <span class="math inline">\(f(x) = \left\{\begin{matrix} 1, &amp; 0 \le x \le y\\ 0, &amp; \text{otherwise}\\\end{matrix}\right.\)</span></p>
+<p>What is the cdf for <span class="math inline">\(Y?\)</span> Integrating the pdf for <span class="math inline">\(Y\)</span>, we have <span class="math inline">\(F(x) = \int_{-\infty}^x{f(t)dt} = \left\{\begin{matrix} 0, &amp; x &lt; 0 \\ x, &amp; 0 \le x \le 1 \\ 1, &amp; x &gt; 1\\\end{matrix}\right.\)</span></p>
+<p>What is <span class="math inline">\(Pr(Y \le y)?\)</span> For <span class="math inline">\(y\)</span> between 0 and 1, <span class="math inline">\(Pr(Y \le y) = y\)</span></p>
+<p>Let <span class="math inline">\(F\)</span> be the cdf for a continuous random variable.</p>
+<p>Let <span class="math inline">\(Z\)</span> be the random variable defined by <span class="math inline">\(Z=F^{-1}\left(Y\right)\)</span> For some specific number, <span class="math inline">\(z,\)</span> in the domain of <span class="math inline">\(F,\)</span> what is <span class="math inline">\(\Pr{\left(Z\le z\right)}?\)</span> <span class="math inline">\(\Pr{\left(Z\le z\right)}\ =\Pr{\left(F^{-1}\left(Y\right)\le z\right)}=\Pr{\left(Y\le F\left(z\right)\right)}=F\left(z\right)\)</span> In other words, <span class="math inline">\(F\)</span> is the cdf of <span class="math inline">\(Z,\)</span> so <span class="math inline">\(Z\)</span> is a random variable with the distribution who’s cdf is <span class="math inline">\(F.\)</span> How would this work for a discrete random variable?</p>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
