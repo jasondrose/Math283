@@ -318,15 +318,14 @@ $(document).ready(function () {
 
 
 <p>Here’s a quick reference for the Mathematica commands we’ll use in this class. You should read the help files in Mathematica for more details on how each command works (hit F1 to open Help or select “Wolfram Documentation” from the “Help” menu.)</p>
-<div id="generating-random-data" class="section level3">
-<h3><em>Generating Random Data</em></h3>
+<div id="generating-random-data" class="section level2">
+<h2><em>Generating Random Data</em></h2>
 <p>RandomVariate[NormalDistribution[0, 1], 10^4]</p>
 <p>will create 10,000 pseudorandom numbers from a Normal Distribution.</p>
 <p>You can use built-in distribution or create your own.</p>
-</div>
 <div id="built-in-distributions" class="section level3">
 <h3><em>Built-in Distributions</em></h3>
-<p>Continuous Distribution</p>
+<p>ContinuousDistribution</p>
 <p>UniformDistribution</p>
 <p>TriangularDistribution</p>
 <p>ExponentialDistribution</p>
@@ -344,16 +343,21 @@ $(document).ready(function () {
 <p>You can define your own function for the pdf</p>
 <p>ProbabilityDistribution[pdf[x],{x,xmin,xmax}] will create a continuous random variable with your pdf.</p>
 <p>ProbabilityDistribution[pdf[x],{x,xmin,xmax, dx}] will create a discrete random variable with your pdf. The space between outcomes will be dx (if outcomes are integers, you would choose dx = 1)</p>
-<p>Continuous example,</p>
+<p><strong>Continuous example</strong></p>
 <p>mypdf[x_] := x/18</p>
 <p>mydistribution = ProbabilityDistribution[mypdf[x], {x, 0, 6}]</p>
 <p>mypdfdata = RandomVariate[mydistribution, 10^4];</p>
 <p>Histogram[mypdfdata, Automatic, “ProbabilityDensity”]</p>
-<p>Discrete example</p>
+<p><strong>Discrete example</strong></p>
 <p>mypdf[x_] := x/18</p>
 <p>mydistribution = ProbabilityDistribution[mypdf[x], {x, 0, 6, 1}]</p>
 <p>mypdfdata = RandomVariate[mydistribution, 10^4];</p>
 <p>Histogram[mypdfdata, Automatic, “ProbabilityDensity”]</p>
+</div>
+</div>
+<div id="working-with-matrices" class="section level2">
+<h2><strong>Working with Matrices</strong></h2>
+<p>Each row of a matrix is a list (insided curly braces)</p>
 </div>
 
 
